@@ -1,0 +1,626 @@
+/* ==========================================================================
+   1. CORE ENGINE VARIABLES, THEMES & RESET
+   ========================================================================== */
+:root {
+    --bg-primary: #0b0f19;
+    --bg-secondary: #161f30;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #e06a28; /* High-grade Safety Stall Orange from reference image */
+    --stall-white: #f3f4f6;
+    --stall-dark: #1f2937;
+    --stall-carpet: #4b5563;
+    --card-bg: #161f30;
+    --header-bg: rgba(11, 15, 25, 0.92);
+    --ad-gradient: linear-gradient(90deg, #e06a28, #bc3a80);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --card-bg: #ffffff;
+    --header-bg: rgba(248, 250, 252, 0.92);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    width: 100%;
+    padding-top: 0px;
+}
+
+/* ==========================================================================
+   2. OPTIMIZED DYNAMIC ANNOUNCEMENT BAR
+   ========================================================================== */
+.ad-announcement-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--ad-gradient);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    min-height: 50px;
+    max-height: 200px;
+    transition: all 0.4s ease-in-out;
+    padding: 5px 40px 5px 20px;
+}
+
+.ad-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    position: relative;
+}
+
+.ad-banner-img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    opacity: 0.18;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    pointer-events: none;
+}
+
+.ad-text-overlay {
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
+    text-align: center;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    line-height: 1.4;
+    padding: 4px 0;
+}
+
+.close-ad-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.25);
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: background 0.2s;
+}
+
+.close-ad-btn:hover {
+    background: rgba(0,0,0,0.6);
+}
+
+/* ==========================================================================
+   3. PREMIUM NAVIGATION HEADER (GLASSMORPHIC)
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 6%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    max-width: 160px;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover { 
+    transform: scale(1.02); 
+}
+
+.brand-logo { 
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.2rem;
+    align-items: center;
+}
+
+.nav-links li { 
+    position: relative; 
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), #f97316);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+}
+
+.nav-links a:hover { 
+    color: var(--accent); 
+}
+
+.nav-links a:hover::after { 
+    width: 100%; 
+}
+
+.header-utilities {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-toggle button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle button {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.theme-toggle button:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: rotate(15deg);
+    border-color: transparent;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.35rem;
+    cursor: pointer;
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   4. HERO SHOWCASE LAYOUT
+   ========================================================================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 140px 8% 60px 8%;
+    gap: 2rem;
+    width: 100%;
+}
+
+.hero-content { 
+    flex: 1; 
+    max-width: 540px; 
+}
+
+.hero-content h1 { 
+    font-size: clamp(2rem, 3.5vw, 3.5rem); 
+    line-height: 1.2;
+    margin-bottom: 1.5rem; 
+}
+
+.hero-content .highlight { 
+    background: linear-gradient(45deg, var(--accent), #f97316);
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+}
+
+.hero-content p { 
+    color: var(--text-muted); 
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem); 
+    margin-bottom: 2rem; 
+    line-height: 1.6; 
+}
+
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), #ea580c);
+    color: #fff;
+    padding: 0.8rem 2.2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(224, 106, 40, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(224, 106, 40, 0.5); 
+}
+
+.hero-visual { 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+}
+
+/* ==========================================================================
+   5. DYNAMIC COLOR-SHIFTING HERO VIDEO FRAME (PORTRAIT ENGINE OPTIMIZED)
+   ========================================================================== */
+@property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.hero-video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 360px; /* Scaled structural frame perfectly for standard 9:16 aspect ratios */
+    aspect-ratio: 9 / 16; 
+    background: var(--card-bg);
+    border-radius: 24px; /* Perfectly curved frame container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Clips the child portrait video seamlessly inside the curve */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* The true dynamic shifting outer frame calibrated for taller profile curves */
+.hero-video-wrapper::before,
+.hero-video-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -6px; /* Width of the dynamic color frame */
+    z-index: -1;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        #e06a28,
+        #ea580c,
+        #bc3a80,
+        #3b82f6,
+        #10b981,
+        #f59e0b,
+        #e06a28
+    );
+    border-radius: 30px; /* Synchronized overlay rounding offset */
+    animation: rotateFrameColors 6s linear infinite;
+}
+
+/* Secondary layer creates a sleek neon glow depth map behind the asset */
+.hero-video-wrapper::after {
+    filter: blur(25px);
+    opacity: 0.65;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fits portrait content nicely without breaking layouts */
+    border-radius: 24px; /* Curved viewport for video elements */
+    display: block;
+    z-index: 2;
+    background-color: var(--bg-secondary);
+}
+
+/* Floating Audio Mute/Unmute Overlay Control Asset */
+.video-mute-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    background: rgba(11, 15, 25, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-mute-btn:hover {
+    background: var(--accent);
+    border-color: transparent;
+    transform: scale(1.08);
+}
+
+.video-mute-btn.unmuted {
+    background: var(--accent);
+    border-color: rgba(255, 255, 255, 0.3);
+    animation: simplePulse 2s infinite ease-in-out;
+}
+
+@keyframes rotateFrameColors {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
+
+@keyframes simplePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+/* ==========================================================================
+   6. MAIN STRUCTURAL CONTENT LAYOUTS
+   ========================================================================== */
+.section { padding: 6rem 8%; text-align: center; }
+.section-subtitle { margin-top: -2.5rem; margin-bottom: 3rem; color: var(--text-muted); font-size: 1.1rem; }
+.alt-bg { background-color: var(--bg-secondary); }
+.section h2 { font-size: 2.5rem; margin-bottom: 3rem; position: relative; }
+.section h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 10px auto 0 auto; border-radius: 2px; }
+
+/* Feature Infocard Grid */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+.card { background-color: var(--card-bg); padding: 2.5rem 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.03); transition: transform 0.3s; }
+.card:hover { transform: translateY(-10px); }
+.card-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+.card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* Image Gallery Grid Display */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; padding-top: 1rem; }
+.gallery-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background-color: var(--bg-primary); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(11, 15, 25, 0.9) 0%, rgba(11, 15, 25, 0.2) 70%, transparent 100%); display: flex; align-items: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.3s ease; }
+.gallery-overlay p { color: #fff; font-size: 1.1rem; font-weight: 600; transform: translateY(15px); transition: transform 0.3s ease; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-item:hover .gallery-overlay p { transform: translateY(0); }
+
+.gallery-action { margin-top: 3.5rem; display: flex; justify-content: center; }
+.btn-see-more { display: inline-flex; align-items: center; gap: 0.75rem; background-color: transparent; color: var(--text-main); border: 2px solid var(--accent); padding: 0.8rem 2.5rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+.btn-see-more:hover { background-color: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(224, 106, 40, 0.4); }
+
+/* About Corporate Context Wrapper */
+.about-container { max-width: 800px; margin: 0 auto; font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); }
+
+/* ==========================================================================
+   7. PREMIUM VIVID COLOR CLIENT MARQUEE (OVERSIZED)
+   ========================================================================== */
+.marquee-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+    overflow:hidden;
+    width:100%;
+}
+
+.marquee{
+    overflow:hidden;
+    position:relative;
+    width:100%;
+}
+
+.marquee-content{
+    display:flex;
+    align-items:center;
+    gap:5mm;
+    width:max-content;
+    animation:scrollLeft 100s linear infinite;
+}
+
+.marquee.reverse .marquee-content{
+    animation:scrollRight 100s linear infinite;
+    gap:5mm;
+}
+
+/* Logo Items - Transparent Background */
+.logo-item{
+    flex:0 0 auto;
+    width:320px;
+    height:160px;
+    background:transparent;
+    border:none;
+    border-radius:0;
+    padding:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:none;
+    transition:all .3s ease;
+}
+
+.logo-item:hover{
+    transform:translateY(-8px) scale(1.03);
+}
+
+.logo-item img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:transparent;
+}
+
+/* Optional brightness boost for dark theme */
+[data-theme="dark"] .logo-item img{
+    filter:brightness(1.1);
+}
+
+@keyframes scrollLeft{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+}
+
+@keyframes scrollRight{
+    from{ transform:translateX(-50%); }
+    to{ transform:translateX(0); }
+}
+
+@media(max-width:768px){
+    .logo-item{
+        width:220px;
+        height:110px;
+        padding:8px;
+    }
+    .marquee-content{
+        gap:5mm;
+    }
+}
+
+/* ==========================================================================
+   8. CONTACT PORTAL & USER INPUT UTILITIES
+   ========================================================================== */
+.contact-container { max-width: 600px; margin: 0 auto; background-color: var(--card-bg); padding: 3rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.form-group { text-align: left; margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-main); outline: none; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+
+.form-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+.btn-submit, .btn-clear { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; flex: 1; transition: transform 0.2s; }
+.btn-submit { background-color: var(--accent); color: #fff; }
+.btn-clear { background-color: #64748b; color: #fff; }
+.btn-submit:hover, .btn-clear:hover { transform: translateY(-1px); }
+
+.action-divider { margin: 2rem 0; position: relative; text-align: center; }
+.action-divider::before { content: ""; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background-color: var(--text-muted); opacity: 0.3; }
+.action-divider span { background-color: var(--card-bg); padding: 0 15px; position: relative; z-index: 2; color: var(--text-muted); font-weight: 600; }
+
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #25D366; color: #fff; padding: 0.9rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background-color 0.3s, transform 0.2s; }
+.btn-whatsapp:hover { background-color: #128C7E; transform: translateY(-1px); }
+
+/* Social Identity Channel Grid Links */
+.social-channels-header { margin-top: 2.5rem; margin-bottom: 1rem; text-align: center; }
+.social-channels-header h4 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
+.social-links-container { display: flex; justify-content: center; gap: 1.2rem; padding-top: 0.5rem; }
+.social-icon { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; color: white; font-size: 1.2rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease, background-color 0.3s ease; }
+.social-icon:hover { transform: translateY(-4px) scale(1.05); }
+.social-icon.fb { background-color: #1877F2; }
+.social-icon.ig { background-color: #E1306C; }
+.social-icon.tt { background-color: #000000; border: 1px solid rgba(255,255,255,0.1); }
+.social-icon.yt { background-color: #FF0000; }
+
+footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+/* ==========================================================================
+   9. HIGH-PERFORMANCE SCREEN RESPONSIVITY MEDIA BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-section { flex-direction: column; text-align: center; padding-top: 150px; gap: 3.5rem; }
+    .hero-content { max-width: 100%; }
+    .hero-visual { width: 100%; }
+}
+
+@media (max-width: 992px) {
+    header { padding: 0.6rem 5%; }
+    .menu-toggle { display: flex; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--bg-secondary);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 6rem 2.5rem 2rem 2.5rem;
+        gap: 1.8rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    [data-theme="light"] .nav-links { background-color: var(--bg-primary); box-shadow: -10px 0 30px rgba(0, 0, 0, 0.06); }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.1rem; width: 100%; display: block; padding: 0.4rem 0; }
+    .nav-links a::after { bottom: -2px; }
+
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .hero-video-wrapper { max-width: 320px; } /* Refined scaling rules for responsive tablets */
+}
+
+@media (max-width: 480px) {
+    .logo-container { max-width: 125px; }
+    .nav-links { width: 85%; }
+    .hero-section { padding-top: 130px; }
+    .form-buttons { flex-direction: column; gap: 0.75rem; }
+    .section { padding: 4rem 4%; }
+    .contact-container { padding: 2rem 1.2rem; }
+    .hero-video-wrapper { max-width: 100%; }
+    .video-mute-btn { width: 38px; height: 38px; bottom: 12px; right: 12px; font-size: 0.95rem; }
+}
