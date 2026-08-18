@@ -11,12 +11,16 @@
 </head>
 <body>
 
+    <!-- Dynamic Announcement Bar (Manual Setup) -->
     <div class="ad-announcement-bar" id="adBar">
         <div class="ad-content">
-            <img src="https://docs.google.com/uc?export=view&id=YOUR_IMAGE_FILE_ID" alt="Upcoming Event Ad" class="ad-banner-img">
-            <div class="ad-text-overlay">
-                <span>🔥 Premium Exhibition Stalls & Construction Blueprints by SC Creations. Contact us today!</span>
-            </div>
+            <!-- 1. මෙතැනට ඔයාගේ Banner Image URL එක දාන්න -->
+            <img src="YOUR_IMAGE_URL_HERE.jpg" alt="Announcement Ad" class="ad-banner-img">
+            
+            <!-- 2. මෙතැනට ඔයාට ප්‍රදර්ශනය කිරීමට අවශ්‍ය විස්තරය දාන්න -->
+            <span class="ad-text-overlay">
+                🔥 ProFood ProPack & AgBiz 2026 | 21 – 22 – 23 Aug, Colombo | BMICH
+            </span>
         </div>
         <button class="close-ad-btn" id="closeAd" aria-label="Close Announcement">&times;</button>
     </div>
@@ -56,17 +60,18 @@
             <a href="#contact" class="btn-primary">Get a Quote</a>
         </div>
         
-    <div class="hero-visual">
-    <div class="hero-video-wrapper">
-        <iframe 
-            src="https://drive.google.com/file/d/1Y0LbgnNCsv7yAJk6tI_oHwBR4j82AwSl/preview?autoplay=1&mute=1" 
-            class="hero-video" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen
-            style="border: none;">
-        </iframe>
-    </div>
-</div>
+        <div class="hero-visual">
+            <div class="hero-video-wrapper">
+                <iframe 
+                    id="heroVideo"
+                    src="https://drive.google.com/file/d/1Y0LbgnNCsv7yAJk6tI_oHwBR4j82AwSl/preview?autoplay=1&mute=1" 
+                    class="hero-video" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen
+                    style="border: none;">
+                </iframe>
+            </div>
+        </div>
     </section>
 
     <section id="design" class="section">
@@ -94,30 +99,43 @@
         <h2>Our Exhibition Showcase</h2>
         <p class="section-subtitle">Real-world snapshots of structural designs built by our development team</p>
         
+        <!-- Year Filter Buttons -->
+        <div class="filter-controls" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
+            <button class="btn-see-more filter-btn" data-year="previous">Previous</button>
+            <button class="btn-see-more filter-btn" data-year="2025">2025</button>
+            <button class="btn-see-more filter-btn" data-year="2026">2026</button>
+        </div>
+
+        <!-- Sub-Events Buttons List -->
+        <div id="subEventsContainer" class="sub-events-wrapper" style="display: none; margin-bottom: 30px;">
+            <h3 id="yearHeader" style="text-align: center; margin-bottom: 15px; width: 100%;">Selected Events</h3>
+            <div id="subEventsList" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+        </div>
+
         <div class="gallery-grid">
             <div class="gallery-item">
                 <img src="1.jpeg" alt="Exhibition Design 1">
-                <div class="gallery-overlay"><p>Venture Hotel Suppliers</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
             <div class="gallery-item">
                 <img src="2.jpeg" alt="Exhibition Design 2">
-                <div class="gallery-overlay"><p>DB Automation (PVT)LTD</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
             <div class="gallery-item">
                 <img src="3.jpeg" alt="Exhibition Design 3">
-                <div class="gallery-overlay"><p>Lalan Packaging</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
             <div class="gallery-item">
                 <img src="4.jpeg" alt="Exhibition Design 4">
-                <div class="gallery-overlay"><p>Rotax Limited</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
             <div class="gallery-item">
                 <img src="5.jpeg" alt="Exhibition Design 5">
-                <div class="gallery-overlay"><p>Spectrum</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
             <div class="gallery-item">
                 <img src="6.jpeg" alt="Exhibition Design 6">
-                <div class="gallery-overlay"><p>Maxtherm</p></div>
+                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
             </div>
         </div>
 
