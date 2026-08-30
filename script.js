@@ -135,4 +135,101 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.reset();
         });
     }
+
+    // --- EXHIBITION SHOWCASE VIDEO GALLERY CONTROLS ---
+    // --- EXHIBITION SHOWCASE VIDEO GALLERY CONTROLS ---
+    function initGalleryVideos() {
+        const videoCards = document.querySelectorAll('.gallery-item.video-item');
+
+        videoCards.forEach(card => {
+            const iframe = card.querySelector('iframe');
+            const soundBtn = card.querySelector('.sound-btn');
+            const playBtn = card.querySelector('.play-btn');
+
+            let isMuted = true;
+            let isPlaying = true;
+
+            if (iframe) {
+                const videoUrl = new URL(iframe.src);
+                videoUrl.searchParams.set('autoplay', '1');
+                videoUrl.searchParams.set('mute', '1');
+                iframe.src = videoUrl.toString();
+            }
+
+            if (soundBtn) {
+                soundBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    isMuted = !isMuted;
+
+                    if (!isMuted) {
+                        // Mute all other cards
+                        document.querySelectorAll('.gallery-item.video-item .sound-btn').forEach(btn => {
+                            if (btn !== soundBtn && btn.classList.contains('unmuted')) {
+                                btn.click();
+                            }
+                        });
+
+                        soundBtn.classList.add('unmuted');
+                        const icon = soundBtn.querySelector('i');
+                        if (icon) icon.className = 'fas fa-volume-high';
+                        soundBtn.setAttribute('title', 'Mute Sound');
+
+                        if (iframe && iframe.src && !iframe.src.includes('YOUR_FACEBOOK_VIDEO_URL')) {
+                            let src = iframe.src;
+                            if (src.includes('mute=1')) {
+                                iframe.src = src.replace('mute=1', 'mute=0');
+                            } else if (!src.includes('mute=0')) {
+                                const sep = src.includes('?') ? '&' : '?';
+                                iframe.src = `${src}${sep}mute=0`;
+                            }
+                        }
+                    } else {
+                        soundBtn.classList.remove('unmuted');
+                        const icon = soundBtn.querySelector('i');
+                        if (icon) icon.className = 'fas fa-volume-xmark';
+                        soundBtn.setAttribute('title', 'Turn Sound On');
+
+                        if (iframe && iframe.src && !iframe.src.includes('YOUR_FACEBOOK_VIDEO_URL')) {
+                            let src = iframe.src;
+                            if (src.includes('mute=0')) {
+                                iframe.src = src.replace('mute=0', 'mute=1');
+                            } else if (!src.includes('mute=1')) {
+                                const sep = src.includes('?') ? '&' : '?';
+                                iframe.src = `${src}${sep}mute=1`;
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (playBtn) {
+                playBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    isPlaying = !isPlaying;
+
+                    if (isPlaying) {
+                        card.classList.remove('is-paused');
+                        const icon = playBtn.querySelector('i');
+                        if (icon) icon.className = 'fas fa-pause';
+                        playBtn.setAttribute('title', 'Pause Video');
+
+                        if (iframe && iframe.src && !iframe.src.includes('YOUR_FACEBOOK_VIDEO_URL')) {
+                            iframe.src = iframe.src.replace('autoplay=0', 'autoplay=1').replace('autoplay=false', 'autoplay=true');
+                        }
+                    } else {
+                        card.classList.add('is-paused');
+                        const icon = playBtn.querySelector('i');
+                        if (icon) icon.className = 'fas fa-play';
+                        playBtn.setAttribute('title', 'Play Video');
+
+                        if (iframe && iframe.src && !iframe.src.includes('YOUR_FACEBOOK_VIDEO_URL')) {
+                            iframe.src = iframe.src.replace('autoplay=1', 'autoplay=0').replace('autoplay=true', 'autoplay=false');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    initGalleryVideos();
 });

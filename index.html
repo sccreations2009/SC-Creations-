@@ -112,30 +112,175 @@
             <div id="subEventsList" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
         </div>
 
+        <!-- Facebook Video Player Root -->
+        <div id="fb-root"></div>
+
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="1.jpeg" alt="Exhibition Design 1">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+            <!-- 
+                ========================================================================================================
+                FACEBOOK VIDEO GALLERY (No JPEG images - Pure Facebook Video Embeds)
+                --------------------------------------------------------------------------------------------------------
+                Facebook share links must be wrapped by the Facebook video plugin endpoint and URL-encoded in the href parameter.
+                Example: https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D123456789&show_text=0&autoplay=1&mute=1
+                ========================================================================================================
+            -->
+
+            <!-- Facebook Video 1 -->
+            <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/1mLd5AMkx2zJxpPFEtdGfsa5I2mdmYmGF/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                    src="https://drive.google.com/file/d/1mLd5AMkx2zJxpPFEtdGfsa5I2mdmYmGF/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/1mLd5AMkx2zJxpPFEtdGfsa5I2mdmYmGF/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Alli Foods video on Google Drive">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Alli Foods</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <!-- Small Sound Icon on Bottom Left -->
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <!-- Play and Pause Icon -->
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="2.jpeg" alt="Exhibition Design 2">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+
+            <!-- Google Drive Video 2 -->
+                <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/14MU0u-Kyn0bhc_cXZjuDFm0aqydlQPwb/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                        src="https://drive.google.com/file/d/14MU0u-Kyn0bhc_cXZjuDFm0aqydlQPwb/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/14MU0u-Kyn0bhc_cXZjuDFm0aqydlQPwb/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Google Drive Video 2">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Harischandra Mills</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="3.jpeg" alt="Exhibition Design 3">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+
+            <!-- Google Drive Video 3 -->
+                <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/1gDeKOw6f81INYvNJGfFPVsie890UwH0Y/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                        src="https://drive.google.com/file/d/1gDeKOw6f81INYvNJGfFPVsie890UwH0Y/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/1gDeKOw6f81INYvNJGfFPVsie890UwH0Y/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Google Drive Video 3">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Maharaja Foods</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="4.jpeg" alt="Exhibition Design 4">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+
+            <!-- Google Drive Video 4 -->
+                <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/19HdZB-Y3YrmKZdH8NSX47zwwcNwqsula/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                        src="https://drive.google.com/file/d/19HdZB-Y3YrmKZdH8NSX47zwwcNwqsula/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/19HdZB-Y3YrmKZdH8NSX47zwwcNwqsula/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Google Drive Video 4">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Bureau Veritas</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="5.jpeg" alt="Exhibition Design 5">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+
+            <!-- Google Drive Video 5 -->
+                <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/180EMLhq-aSEpI_lZQvMETbC80Alp4qrA/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                        src="https://drive.google.com/file/d/180EMLhq-aSEpI_lZQvMETbC80Alp4qrA/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/180EMLhq-aSEpI_lZQvMETbC80Alp4qrA/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Google Drive Video 5">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Softlogic Computers</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="6.jpeg" alt="Exhibition Design 6">
-                <div class="gallery-overlay"><p>SEYAGO Frames</p></div>
+
+            <!-- Google Drive Video 6 -->
+                <div class="gallery-item video-item" data-fb-src="https://drive.google.com/file/d/141PyyHLEOplMiWnqJ0LwjgWtZBoAymxP/preview">
+                <iframe 
+                    class="gallery-video-frame"
+                        src="https://drive.google.com/file/d/141PyyHLEOplMiWnqJ0LwjgWtZBoAymxP/preview?autoplay=1&amp;mute=1" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+                <a class="gallery-facebook-link" href="https://drive.google.com/file/d/141PyyHLEOplMiWnqJ0LwjgWtZBoAymxP/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Google Drive Video 6">
+                    <i class="fab fa-google-drive"></i> Open in Drive
+                </a>
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Kosher</span>
+                </div>
+                <div class="gallery-video-controls">
+                    <button class="gallery-ctrl-btn sound-btn" aria-label="Toggle Audio" title="Turn Sound On/Off">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button class="gallery-ctrl-btn play-btn" aria-label="Play or Pause Video" title="Play / Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
